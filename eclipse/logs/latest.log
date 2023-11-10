@@ -1,0 +1,64 @@
+[20:57:31] [main/INFO]: Setting user: Player297
+[20:57:36] [Client thread/INFO]: LWJGL Version: 2.9.1
+[20:57:56] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Valerium, FMLFileResourcePack:Indium, FMLFileResourcePack:Translate
+[20:58:00] [Sound Library Loader/INFO]: Sound engine started
+[20:58:05] [Client thread/INFO]: Created: 16x16 textures/blocks-atlas
+[20:58:05] [Client thread/INFO]: Created: 16x16 textures/items-atlas
+[20:58:31] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Valerium, FMLFileResourcePack:Indium, FMLFileResourcePack:Translate
+[20:58:33] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[20:58:34] [Client thread/INFO]: Created: 512x256 textures/items-atlas
+[20:58:35] [Sound Library Loader/INFO]: Sound engine started
+[20:58:42] [Client thread/WARN]: Failed to load texture: indium:mainmenu/textures/gui/main/play.png.png
+java.io.FileNotFoundException: indium:mainmenu/textures/gui/main/play.png.png
+	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:65) ~[FallbackResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:67) ~[SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.renderer.texture.SimpleTexture.loadTexture(SimpleTexture.java:35) ~[SimpleTexture.class:?]
+	at net.minecraft.client.renderer.texture.TextureManager.loadTexture(TextureManager.java:89) ~[TextureManager.class:?]
+	at net.minecraft.client.renderer.texture.TextureManager.bindTexture(TextureManager.java:45) ~[TextureManager.class:?]
+	at fr.valerium.indium.utils.AsyncResourceLocation.bind(AsyncResourceLocation.java:70) ~[AsyncResourceLocation.class:?]
+	at fr.valerium.indium.utils.GuiUtils.drawImageTransparent(GuiUtils.java:521) ~[GuiUtils.class:?]
+	at fr.valerium.indium.utils.GuiUtils.drawImageTransparent(GuiUtils.java:510) ~[GuiUtils.class:?]
+	at fr.valerium.valemod.client.gui.mainmenu.buttons.MainMenuButton.draw(MainMenuButton.java:50) ~[MainMenuButton.class:?]
+	at fr.valerium.indium.ui.UI.drawNode(UI.java:245) ~[UI.class:?]
+	at fr.valerium.indium.ui.UI.lambda$drawScreen$15(UI.java:210) ~[UI.class:?]
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(Unknown Source) ~[?:1.8.0_381]
+	at java.util.ArrayList.forEach(Unknown Source) [?:1.8.0_381]
+	at java.util.stream.SortedOps$RefSortingSink.end(Unknown Source) [?:1.8.0_381]
+	at java.util.stream.Sink$ChainedReference.end(Unknown Source) [?:1.8.0_381]
+	at java.util.stream.AbstractPipeline.copyInto(Unknown Source) [?:1.8.0_381]
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source) [?:1.8.0_381]
+	at java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source) [?:1.8.0_381]
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source) [?:1.8.0_381]
+	at java.util.stream.AbstractPipeline.evaluate(Unknown Source) [?:1.8.0_381]
+	at java.util.stream.ReferencePipeline.forEach(Unknown Source) [?:1.8.0_381]
+	at fr.valerium.indium.ui.UI.drawScreen(UI.java:210) [UI.class:?]
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1137) [EntityRenderer.class:?]
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1067) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:962) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:164) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_381]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_381]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_381]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_381]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(Unknown Source) [start/:?]
+	at GradleStart.main(Unknown Source) [start/:?]
+[20:59:05] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[20:59:05] [Server thread/INFO]: Generating keypair
+[20:59:07] [Server thread/INFO]: Preparing start region for level 0
+[20:59:08] [Server thread/INFO]: Preparing spawn area: 4%
+[20:59:09] [Server thread/INFO]: Preparing spawn area: 78%
+[20:59:10] [Server thread/INFO]: Changing view distance to 4, from 10
+[20:59:11] [Server thread/INFO]: Player297[local:E:f7f12d6e] logged in with entity id 276 at (68.67092490306658, 90.16647896758379, 375.5213604516522)
+[20:59:11] [Server thread/INFO]: Player297 joined the game
+[20:59:13] [Client thread/INFO]: [CHAT] Version 1.0.7.48 of CodeChickenCore is available
+[21:00:59] [Client thread/INFO]: Stopping!
+[21:00:59] [Server thread/INFO]: Stopping server
+[21:00:59] [Server thread/INFO]: Saving players
+[21:00:59] [Server thread/INFO]: Saving worlds
+[21:00:59] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[21:00:59] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[21:00:59] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[21:00:59] [Client Shutdown Thread/INFO]: Stopping server
+[21:00:59] [Client Shutdown Thread/INFO]: Saving players

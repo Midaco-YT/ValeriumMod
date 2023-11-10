@@ -1,0 +1,25 @@
+package fr.valerium.valemod.shop.ui;
+
+import fr.valerium.valemod.shop.ShopCategory;
+import fr.valerium.valemod.shop.utils.ShopPage;
+import fr.valerium.valemod.shop.utils.UIShopPage;
+
+public class UIShopBlocksPage extends UIShopPage {
+
+	public UIShopBlocksPage() {
+		super(ShopPage.BLOCKS);
+	}
+
+	public void preDraw(int mouseX, int mouseY, float ticks) {
+	}
+	
+	protected void displayCategoryButtons(ShopCategory category, double startX, double startY, double buttonSize, double buttonSpacing, int mouseX, int mouseY) {
+        if (category == ShopCategory.BLOCKS) {
+            // Affichez les boutons de la catégorie "minerals" d'une manière spécifique si nécessaire
+            // Vous pouvez ajouter un traitement particulier ici
+        } else {
+            // Utilisez la méthode de la classe parent pour les autres catégories
+            super.displayCategoryButtons(ShopCategory.MINERALS, startX, startY, buttonSize, buttonSpacing, mc, mouseX, mouseY);
+        }
+    }
+}

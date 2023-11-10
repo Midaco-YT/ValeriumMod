@@ -1,0 +1,7 @@
+package fr.valerium.valemod.shop.node;
+
+import fr.valerium.indium.nodes.abstracts.AClickableNode;
+
+public class ItemSellNode extends AClickableNode {
+
+}

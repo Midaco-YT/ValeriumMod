@@ -1,0 +1,14 @@
+package fr.valerium.valemod.shop;
+
+import net.minecraft.item.Item;
+
+
+public class ShopItemOffer {
+
+	ShopManager shopManager = new ShopManager();
+	
+	public void registerOffers() {
+		
+		shopManager.addItemToShop(Items.stick, 10, 5, ShopCategory.LOOT_MOB);
+	}
+}

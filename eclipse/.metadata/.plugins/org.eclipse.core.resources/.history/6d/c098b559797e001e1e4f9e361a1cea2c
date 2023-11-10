@@ -1,0 +1,27 @@
+package fr.valerium.valemod.shop.node;
+
+import fr.valerium.indium.nodes.abstracts.AClickableNode;
+import fr.valerium.indium.utils.Color;
+import fr.valerium.indium.utils.GuiUtils;
+import net.minecraft.client.Minecraft;
+
+public class ItemSellNode extends AClickableNode {
+
+	private static final Color COLOR = new Color(112, 112, 112);
+
+	private static final Color HOVERED_COLOR = new Color(239, 57, 38);
+	
+	public ItemSellNode(double x, double y, double size) {
+	    super(x, y, size, size);
+	  }
+	  
+	  public void draw(Minecraft mc, int mouseX, int mouseY) {
+	    super.draw(mc, mouseX, mouseY);
+	    float borderRadius = 10.0F;
+	    Color animatedColor = new Color(COLOR.r + animationValue(HOVERED_COLOR.r - COLOR.r), COLOR.g + animationValue(HOVERED_COLOR.g - COLOR.g), COLOR.b + animationValue(HOVERED_COLOR.b - COLOR.b));
+	    animatedColor.bind();
+	    GuiUtils.drawRoundedRect(this.x, this.y, COLOR, this.width, this.height, borderRadius);
+	    Color.BLUE.bind();
+	  }
+
+}

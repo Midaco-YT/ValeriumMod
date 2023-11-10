@@ -1,0 +1,5 @@
+package fr.valerium.valemod.shop.gui;
+
+public class GuiShop {
+
+}

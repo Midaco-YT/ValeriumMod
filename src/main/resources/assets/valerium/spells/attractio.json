@@ -1,0 +1,7 @@
+{
+    "spellName": "Attractio",
+    "description": "This is the Attractio spell.",
+    "maxLevel": 4,
+    "cooldown": 30,
+    "spellIcon": "attractio_icon.png"
+}

@@ -1,0 +1,7 @@
+{
+  "spellName": "Attractio Spell",
+  "description": "This is the description of the Attractive Spell.",
+  "maxLevel": 3,
+  "cooldown": 60,
+  "spellIcon": "valerium:textures/spell_icons/attractive.png"
+}

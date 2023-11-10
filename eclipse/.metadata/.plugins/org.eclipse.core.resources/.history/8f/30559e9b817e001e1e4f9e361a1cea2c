@@ -1,0 +1,158 @@
+package fr.valerium.valemod.shop.utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.valerium.indium.nodes.abstracts.ANode;
+import fr.valerium.indium.ui.UI;
+import fr.valerium.indium.utils.Color;
+import fr.valerium.indium.utils.Fonts;
+import fr.valerium.indium.utils.GuiUtils;
+import fr.valerium.valemod.shop.ShopItem;
+import fr.valerium.valemod.shop.ShopManager;
+import fr.valerium.valemod.shop.node.NavbarNode;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+
+public abstract class UIShopPage extends UI {
+    public static final Color WHITE = new Color(240, 240, 240);
+    public static final Color ORANGE = new Color(255, 111, 0);
+    public static final Color BLACK = new Color(28, 28, 28);
+    public static final Color LIGHT_BLACK = new Color(48, 48, 48);
+    public static final Color BORDER = new Color(193, 193, 193);
+    public static final Color GREEN = new Color(48, 203, 31);
+    public static final Color RED = new Color(239, 57, 38);
+    public static final Color GRAY = new Color(112, 112, 112);
+    public static final Color LIGHT_GRAY = new Color(210, 210, 210);
+    public static final Color MAGENTA = new Color(139, 0, 139);
+
+    private static final ResourceLocation LOGO_TEXTURE = new ResourceLocation("shop", "textures/gui/navbar/logo.png");
+    private static long pbValue;
+
+    private final ShopPage page;
+    private double x;
+    private double y;
+    private List<ShopItem> itemsToDisplay = new ArrayList<>(); // Liste des items à afficher
+
+    public UIShopPage(ShopPage page) {
+        this.page = page;
+    }
+
+    public void initGui() {
+        super.initGui();
+        double baseRatio = 1.7777777777777777D;
+        double ratio = this.mc.displayWidth / this.mc.displayHeight;
+        if (ratio < 1.7777777777777777D || Math.abs(ratio - 1.7777777777777777D) < 0.005D) {
+            this.x = 0.0D;
+            this.y = (this.mc.displayHeight - height(100.0D)) / 2.0D;
+        } else {
+            this.x = (this.mc.displayWidth - width(100.0D)) / 2.0D;
+            this.y = 0.0D;
+        }
+        initNavbar();
+        updateItemsToDisplay(); // Mettez à jour la liste d'items à afficher au chargement de la page
+    }
+
+    private void initNavbar() {
+        double navbarHeight = getNavbarHeight();
+        double x = width(9.43F) + width(77.2F);
+        double y = this.y + width(16.0F);
+        double offsetY = 0.0D;
+
+        List<NavbarNode> navbarNodes = new ArrayList<>();
+
+        for (ShopPage navItem : ShopPage.getValues()) {
+            // Créez un bouton de catégorie pour chaque catégorie et ajoutez un gestionnaire d'événements
+            NavbarNode navbarNode = new NavbarNode(navItem, this.x + x, y + offsetY, navbarHeight, navItem.equals(this.page));
+            navbarNode.setZindex(100);
+            navbarNode.setCallback(n -> navItem.open());
+            navbarNodes.add(navbarNode);
+            offsetY += navbarNode.getHeight() + width(1.0F); // Espacement vertical
+        }
+
+        // Ajoutez les boutons de la barre de navigation à la scène
+        for (NavbarNode node : navbarNodes) {
+            addNode(node);
+        }
+    }
+
+    @Override
+    public void actionPerformed(ANode node) {
+        if (node instanceof NavbarNode) {
+            ShopPage selectedCategory = ((NavbarNode) node).getPage();
+            updateItemsToDisplay(selectedCategory); // Mettez à jour la liste d'items à afficher en fonction de la catégorie sélectionnée
+        }
+    }
+
+    private void updateItemsToDisplay(ShopPage selectedCategory) {
+        UIShopPage currentCategory = this.page.getPage();
+        ShopManager shopManager;
+		itemsToDisplay = shopManager.getItemsByCategory(currentCategory);
+    }
+
+    public void postDraw(int mouseX, int mouseY, float ticks) {
+        int borderWidth = getLineWidth();
+        double xOffset = width(10.0F);
+        double yOffset = height(20.0F);
+        int slotSize = 20;
+        
+        // Dessinez les items à vendre de la catégorie actuellement sélectionnée
+        for (ShopItem shopItem : itemsToDisplay) {
+            ItemStack itemStack = shopItem.getItemStack();
+            GuiUtils.renderItemStackIntoGUI(itemStack, xOffset, yOffset);
+
+            yOffset += slotSize + height(1.0F); // Ajustez l'espacement si nécessaire
+        }
+
+        // ... autres éléments de la page
+
+        // Border
+        GuiUtils.drawRect(this.x + width(10.0F), this.y + width(9.0F), this.x + width(90.0F), this.y + width(9.0F) + borderWidth, RED);
+        GuiUtils.drawRect(this.x + width(85.0F), this.y + height(8.69), this.x + width(85.0F) + borderWidth, this.y + getNavbarHeight() + width(45.5F), RED);
+
+        GuiUtils.drawStringWithCustomFont(mc, "Shop - " + getPage(), this.x + width(40.0F), this.y + width(6.0F), WHITE, Fonts.MONTSERRAT_MEDIUM.getFont(), 150);
+    }
+
+  
+  public int getLineWidth() {
+    return (int)Math.max(width(0.06F), 1.5D);
+  }
+  
+  public double getNavbarHeight() {
+    return height(10.55D);
+  }
+  
+  public ShopPage getPage() {
+    return this.page;
+  }
+  
+  public double width(double value) {
+    double baseRatio = 1.7777777777777777D;
+    double ratio = this.mc.displayWidth / this.mc.displayHeight;
+    if (ratio < 1.7777777777777777D || Math.abs(ratio - 1.7777777777777777D) < 0.005D)
+      return this.mc.displayWidth / 100.0D * value; 
+    return this.mc.displayHeight * 1.7777777777777777D / 100.0D * value;
+  }
+  
+  public float width(float value) {
+    float baseRatio = 1.7777778F;
+    float ratio = this.mc.displayWidth / this.mc.displayHeight;
+    if (ratio < 1.7777778F || Math.abs(ratio - 1.7777778F) < 0.005F)
+      return this.mc.displayWidth / 100.0F * value; 
+    return this.mc.displayHeight * 1.7777778F / 100.0F * value;
+  }
+  
+  public double height(double value) {
+    double baseRatio = 1.7777777777777777D;
+    return width(value) / 1.7777777777777777D;
+  }
+  
+  public float height(float value) {
+    float baseRatio = 1.7777778F;
+    return width(value) / 1.7777778F;
+  }
+  
+  public boolean isValid() {
+    return true;
+  }
+}

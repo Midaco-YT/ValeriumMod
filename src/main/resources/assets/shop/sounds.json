@@ -1,0 +1,20 @@
+{
+  "shop.buy.success": {
+    "category": "neutral",
+    "sounds": [
+      "buy"
+    ]
+  },
+  "shop.buy.error": {
+    "category": "neutral",
+    "sounds": [
+      "error"
+    ]
+  },
+  "shop.box.open": {
+    "category": "neutral",
+    "sounds": [
+      "box"
+    ]
+  }
+}

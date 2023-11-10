@@ -1,0 +1,21 @@
+package fr.valerium.valemod.shop.node;
+
+import fr.valerium.indium.nodes.abstracts.AClickableNode;
+import fr.valerium.indium.utils.Color;
+
+public class NavbarNode extends AClickableNode {
+
+	public static final Color COLOR = new Color(28, 28, 28);
+
+	public static final Color SELECTED_COLOR = new Color(239, 57, 38);
+
+	private ShopPage page;
+
+	private boolean selected;
+
+	public NavbarNode(double x, double y, double width, double height) {
+		super(x, y, width, height);
+		// TODO Auto-generated constructor stub
+	}
+
+}

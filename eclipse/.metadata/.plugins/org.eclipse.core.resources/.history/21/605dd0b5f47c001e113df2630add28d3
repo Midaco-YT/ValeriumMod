@@ -1,0 +1,93 @@
+package fr.valerium.valemod.shop.gui;
+
+import java.util.Arrays;
+import java.util.List;
+
+import fr.valerium.valemod.shop.ShopCategory;
+import fr.valerium.valemod.shop.ShopItem;
+import fr.valerium.valemod.shop.ShopManager;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.item.ItemStack;
+
+public class GuiShop extends GuiScreen {
+    private ShopManager shopManager;
+    private ShopCategory currentCategory = ShopCategory.ALL; // Catégorie actuelle
+    private List<ShopItem> itemsToDisplay; // Liste des items à afficher
+
+    private int currentPage = 0;
+    private int itemsPerPage = 10; // Nombre d'items par page
+    
+    int xPosition = 10; // Position horizontale de vos boutons
+    int yPosition = 30; // Position verticale de vos boutons
+    int buttonWidth = 100; // Largeur de vos boutons
+    int buttonHeight = 20; // Hauteur de vos boutons
+
+    // Autres membres de la classe
+
+    public GuiShop(ShopManager shopManager) {
+        this.shopManager = shopManager;
+
+        // Créez un bouton pour revenir à la page de base
+        GuiButton basePageButton = new GuiButton(0, xPosition, yPosition, buttonWidth, buttonHeight, "Tous les objets");
+
+        // Créez des boutons pour les catégories
+        List<ShopCategory> categories = Arrays.asList(ShopCategory.values());
+        for (int i = 0; i < categories.size(); i++) {
+            ShopCategory category = categories.get(i);
+            GuiButton categoryButton = new GuiButton(i + 1, xPosition, yPosition, buttonWidth, buttonHeight, category.name());
+        }
+    }
+
+    @Override
+    public void actionPerformed(GuiButton button) {
+        if (button.id == 0) {
+            // Revenir à la page de base (catégorie "ALL")
+            currentCategory = ShopCategory.ALL;
+            currentPage = 0;
+        } else if (button.id >= 1 && button.id <= categories.size()) {
+            // L'utilisateur a sélectionné une nouvelle catégorie
+            currentCategory = ShopCategory.valueOf(button.displayString);
+            currentPage = 0;
+        }
+        // Mettez à jour la liste des items à afficher
+        updateItemsToDisplay();
+    }
+
+    private void updateItemsToDisplay() {
+        // Obtenez les items à afficher en fonction de la catégorie actuelle
+        itemsToDisplay = shopManager.getItemsByCategory(currentCategory);
+    }
+
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        super.drawScreen(mouseX, mouseY, partialTicks);
+
+        // Dessinez le contenu de votre GUI en fonction de la page actuelle et de la catégorie
+        int xOffset = 10;
+        int yOffset = 30;
+        int slotSize = 20;
+
+        int startIndex = currentPage * itemsPerPage;
+        int endIndex = Math.min(startIndex + itemsPerPage, itemsToDisplay.size());
+
+        for (int i = startIndex; i < endIndex; i++) {
+            ShopItem shopItem = itemsToDisplay.get(i);
+            // Dessinez l'élément à l'emplacement spécifié
+            ItemStack itemStack = new ItemStack(shopItem.getItemOrBlock());
+            this.itemRender.renderItemAndEffectIntoGUI(itemStack, xOffset, yOffset);
+            // Afficher le nom et le prix de l'item
+            this.fontRendererObj.drawString(itemStack.getDisplayName(), xOffset + 24, yOffset + 6, 0xFFFFFF);
+            this.fontRendererObj.drawString("Prix d'achat : " + shopItem.getBuyPrice(), xOffset + 24, yOffset + 18, 0xFFFF00);
+            yOffset += slotSize + 5;
+        }
+
+        // Dessinez les boutons de pagination si nécessaire
+        if (currentPage > 0) {
+            this.buttonList.add(prevPageButton);
+        }
+        if (endIndex < itemsToDisplay.size()) {
+            this.buttonList.add(nextPageButton);
+        }
+    }
+}

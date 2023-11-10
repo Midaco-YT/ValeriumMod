@@ -1,0 +1,37 @@
+package fr.valerium.valemod.shop;
+
+public class ShopItem {
+    private Object itemOrBlock; // L'objet ou le bloc à vendre
+    private int buyPrice;
+    private int sellPrice;
+    private ShopCategory category;
+
+    public ShopItem(Object itemOrBlock, int buyPrice, int sellPrice, ShopCategory category) {
+        this.itemOrBlock = itemOrBlock;
+        this.buyPrice = buyPrice;
+        this.sellPrice = sellPrice;
+        this.category = category;
+    }
+
+    // Méthode pour obtenir le prix d'achat
+    public int getBuyPrice() {
+        return buyPrice;
+    }
+
+    // Méthode pour obtenir le prix de vente
+    public int getSellPrice() {
+        return sellPrice;
+    }
+
+    // Méthode pour obtenir la catégorie
+    public ShopCategory getCategory() {
+        return category;
+    }
+    
+    public Object getItemOrBlock() {
+        return itemOrBlock;
+    }
+
+
+    // Autres méthodes et champs de la classe
+}
